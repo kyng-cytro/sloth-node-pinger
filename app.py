@@ -38,8 +38,8 @@ if __name__ == "__main__":
     CHANNEL_ID = os.environ.get('CHANNEL_ID')
     NAME = os.environ.get('NAME')
     bot = discum.Client(token=TOKEN, log=False)
-    print("Searching....")
     bot.sendMessage(channelID=CHANNEL_ID, message=":sparkles: Working...")
+    print("Searching....")
     schedule.every().second.do(get_data, bot, NAME)
 
     while True:

@@ -27,7 +27,7 @@ def get_data(bot, NAME):
 
         line_break = '\n'
 
-        message = f"New Witness: {content['current_witness']}{line_break}Block Number: {content['head_block_number']}"
+        message = f":sparkles: New Match for {NAME.capitalize()}{line_break}Name: {content['current_witness']}{line_break}Block Number: {content['head_block_number']}"
 
         bot.sendMessage(channelID=CHANNEL_ID, message=message)
 
@@ -39,6 +39,7 @@ if __name__ == "__main__":
     NAME = os.environ.get('NAME')
     bot = discum.Client(token=TOKEN, log=False)
     print("Searching....")
+    bot.sendMessage(channelID=CHANNEL_ID, message=":tada: Working...")
     schedule.every().second.do(get_data, bot, NAME)
 
     while True:

@@ -19,17 +19,20 @@ def get_data(bot, NAME):
 
     res = requests.post("https://api.hive.blog/", data=json.dumps(data))
 
-    content = res.json()['result']
+    try:
+        content = res.json()['result']
 
-    if NAME in content['current_witness']:
+        if NAME in content['current_witness']:
 
-        print("Found & Sending... ")
+            print("Found & Sending... ")
 
-        line_break = '\n'
+            line_break = '\n'
 
-        message = f":tada: New Match for {NAME.capitalize()}{line_break}Name: {content['current_witness']}{line_break}Block Number: {content['head_block_number']}"
+            message = f":tada: New Match for {NAME.capitalize()}{line_break}Name: {content['current_witness']}{line_break}Block Number: {content['head_block_number']}"
 
-        bot.sendMessage(channelID=CHANNEL_ID, message=message)
+            bot.sendMessage(channelID=CHANNEL_ID, message=message)
+    except:
+        pass
 
 
 if __name__ == "__main__":
